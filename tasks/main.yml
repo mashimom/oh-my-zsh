@@ -1,0 +1,25 @@
+---
+# tasks file for oh-my-zsh
+
+  - apt: name={{ item }} state=latest
+    sudo: true
+    with_items:
+      - zsh
+      - git
+    notify: clear apt packages and downloads
+
+  - git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
+
+  - shell: cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+
+  - shell: chsh -s /bin/zsh {{ ansible_env.USER }}
+    when: ansible_env.SHELL | basename != zsh
+    sudo: true
+
+  - lineinfile: dest=~/.zshrc regexp='^ZSH_THEME="(?!{{ omz_theme }})"' line='ZSH_THEME="{{ omz_theme }}"'
+
+  - lineinfile: dest=~/.zshrc regexp='^plugins=\((?!{{ omz_plugins | join(" ") }})\)' line='plugins=({{ omz_plugins | join(" ") }})'
+
+  - lineinfile: dest=~/.zshrc regexp="^alias fnd=" insertafter="^# alias ohmyzsh=" line="alias fnd=\"print -l `pwd`\\"/\\"$@\""
+
+  - lineinfile: dest=~/.zshrc regexp="^alias prn=" insertafter="^# alias ohmyzsh=" line="alias prn=\"print -l $@\""

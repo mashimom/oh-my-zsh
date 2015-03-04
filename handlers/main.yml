@@ -1,0 +1,6 @@
+---
+# handlers file for oh-my-zsh
+
+  - name: clear apt packages and downloads
+    shell: apt-get -y autoremove && apt-get -y autoclean
+    sudo: true

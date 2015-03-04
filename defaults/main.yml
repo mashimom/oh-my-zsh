@@ -1,0 +1,5 @@
+---
+# defaults file for oh-my-zsh
+
+omz_plugins: [git, vagrant, docker, command-not-found, gradle, lein]
+omz_theme: pygmalion
