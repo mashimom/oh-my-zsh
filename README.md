@@ -1,6 +1,6 @@
 # oh-my-zsh
 
-Ansible role to install and configure oh-my-zsh on Ubuntu.  
+Ansible role to install and configure oh-my-zsh on both APT and YUM based distros.
 Tested on Ubuntu 14.04 64bit.
 
 ## Requirements
