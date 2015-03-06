@@ -1,5 +1,5 @@
 ---
 # defaults file for oh-my-zsh
 
-ohmyzsh_plbk_plugins: [git, vagrant, docker, command-not-found, gradle, lein]
-ohmyzsh_plbk_theme: pygmalion
+ohmyzsh_plugins: [git, vagrant, docker, command-not-found, gradle, lein]
+ohmyzsh_theme: pygmalion

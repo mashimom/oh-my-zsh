@@ -24,9 +24,9 @@
   - user: name={{ ansible_env.USER }} shell=/bin/zsh
     sudo: true
 
-  - lineinfile: dest=~/.zshrc regexp='^ZSH_THEME="(?!{{ ohmyzsh_plbk_theme }})"' line='ZSH_THEME="{{ ohmyzsh_plbk_theme }}"'
+  - lineinfile: dest=~/.zshrc regexp='^ZSH_THEME="(?!{{ ohmyzsh_theme }})"' line='ZSH_THEME="{{ ohmyzsh_theme }}"'
 
-  - lineinfile: dest=~/.zshrc regexp='^plugins=\((?!{{ ohmyzsh_plbk_plugins | join(" ") }})\)' line='plugins=({{ ohmyzsh_plbk_plugins | join(" ") }})'
+  - lineinfile: dest=~/.zshrc regexp='^plugins=\((?!{{ ohmyzsh_plugins | join(" ") }})\)' line='plugins=({{ ohmyzsh_plugins | join(" ") }})'
 
   - lineinfile: dest=~/.zshrc regexp="^alias fnd=" insertafter="^# alias ohmyzsh=" line="alias fnd=\"print -l `pwd`\\"/\\"$@\""
 
