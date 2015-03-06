@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Marco Shimomoto
-  description:
+  description: Ansible role to install and configure oh-my-zsh on both APT and YUM based distros.
   license: license (Apache v2.0)
   min_ansible_version: 1.5
   #
