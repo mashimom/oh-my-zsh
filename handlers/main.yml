@@ -4,3 +4,7 @@
   - name: clear apt packages and downloads
     shell: apt-get -y autoremove && apt-get -y autoclean
     sudo: true
+
+  - name: clear yum packages and downloads
+    shell: yum -y clear all
+    sudo: true

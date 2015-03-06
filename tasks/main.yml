@@ -2,6 +2,15 @@
 # tasks file for oh-my-zsh
 
   - apt: name={{ item }} state=latest
+    when: ansible_pkg_mgr == 'apt'
+    sudo: true
+    with_items:
+      - zsh
+      - git
+    notify: clear apt packages and downloads
+
+  - yum: name={{ item }} state=latest
+    when: ansible_pkg_mgr == 'yum'
     sudo: true
     with_items:
       - zsh
@@ -12,13 +21,12 @@
 
   - shell: cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
-  - shell: chsh -s /bin/zsh {{ ansible_env.USER }}
-    when: ansible_env.SHELL | basename != zsh
+  - user: name={{ ansible_env.USER }} shell=/bin/zsh
     sudo: true
 
-  - lineinfile: dest=~/.zshrc regexp='^ZSH_THEME="(?!{{ omz_theme }})"' line='ZSH_THEME="{{ omz_theme }}"'
+  - lineinfile: dest=~/.zshrc regexp='^ZSH_THEME="(?!{{ ohmyzsh_plbk_theme }})"' line='ZSH_THEME="{{ ohmyzsh_plbk_theme }}"'
 
-  - lineinfile: dest=~/.zshrc regexp='^plugins=\((?!{{ omz_plugins | join(" ") }})\)' line='plugins=({{ omz_plugins | join(" ") }})'
+  - lineinfile: dest=~/.zshrc regexp='^plugins=\((?!{{ ohmyzsh_plbk_plugins | join(" ") }})\)' line='plugins=({{ ohmyzsh_plbk_plugins | join(" ") }})'
 
   - lineinfile: dest=~/.zshrc regexp="^alias fnd=" insertafter="^# alias ohmyzsh=" line="alias fnd=\"print -l `pwd`\\"/\\"$@\""
 
