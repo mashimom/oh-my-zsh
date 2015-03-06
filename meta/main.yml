@@ -10,24 +10,25 @@ galaxy_info:
   # platform on this list, let us know and we'll get it added!
   #
   platforms:
-  #- name: EL
-  #  versions:
+  - name: EL
+    versions:
   #  - all
-  #  - 5
-  #  - 6
-  #  - 7
+     - 5
+     - 6
+     - 7
   #- name: GenericUNIX
   #  versions:
   #  - all
   #  - any
-  #- name: Fedora
-  #  versions:
+  - name: Fedora
+    versions:
   #  - all
   #  - 16
   #  - 17
   #  - 18
   #  - 19
-  #  - 20
+     - 20
+     - 21
   #- name: SmartOS
   #  versions:
   #  - all
@@ -68,11 +69,11 @@ galaxy_info:
   #  - maverick
   #  - natty
   #  - oneiric
-  #  - precise
-  #  - quantal
-  #  - raring
-  #  - saucy
-    - trusty
+     - precise
+     - quantal
+     - raring
+     - saucy
+     - trusty
   #- name: SLES
   #  versions:
   #  - all
@@ -86,9 +87,9 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
-  #  - all
+  - name: Debian
+    versions:
+      - all
   #  - etch
   #  - lenny
   #  - squeeze
