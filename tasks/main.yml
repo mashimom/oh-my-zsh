@@ -15,7 +15,7 @@
     with_items:
       - zsh
       - git
-    notify: clear apt packages and downloads
+    notify: clear yum packages and downloads
 
   - git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
 
