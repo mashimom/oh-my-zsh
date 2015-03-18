@@ -19,15 +19,8 @@
 
   - git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
 
-  - shell: cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+  - template: src=templates/.zshrc.j2 dest=~/.zshrc
 
   - user: name={{ ansible_env.USER }} shell=/bin/zsh
     sudo: true
-
-  - lineinfile: dest=~/.zshrc regexp='^ZSH_THEME="(?!{{ ohmyzsh_theme }})"' line='ZSH_THEME="{{ ohmyzsh_theme }}"'
-
-  - lineinfile: dest=~/.zshrc regexp='^plugins=\((?!{{ ohmyzsh_plugins | join(" ") }})\)' line='plugins=({{ ohmyzsh_plugins | join(" ") }})'
-
-  - lineinfile: dest=~/.zshrc regexp="^alias fnd=" insertafter="^# alias ohmyzsh=" line="alias fnd=\"print -l `pwd`\\"/\\"$@\""
-
-  - lineinfile: dest=~/.zshrc regexp="^alias prn=" insertafter="^# alias ohmyzsh=" line="alias prn=\"print -l $@\""
+    
