@@ -7,7 +7,7 @@
     with_items:
       - zsh
       - git
-    notify: clear apt packages and downloads
+    notify: clean apt cache
 
   - yum: name={{ item }} state=latest
     when: ansible_pkg_mgr == 'yum'
@@ -15,7 +15,7 @@
     with_items:
       - zsh
       - git
-    notify: clear yum packages and downloads
+    notify: clean yum cache
 
   - git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
 

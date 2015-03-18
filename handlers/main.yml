@@ -1,10 +1,10 @@
 ---
 # handlers file for oh-my-zsh
 
-  - name: clear apt packages and downloads
+  - name: clean apt cache
     shell: apt-get -y autoremove && apt-get -y autoclean
     sudo: true
 
-  - name: clear yum packages and downloads
-    shell: yum -y clear all
+  - name: clean yum cache
+    shell: yum -y clean all
     sudo: true
