@@ -3,15 +3,15 @@
 export ZSH=$HOME/.oh-my-zsh
 
 ## Theme
-ZSH_THEME="{{ ohmyzsh_theme }}"
+ZSH_THEME="{{ ohmyzsh.theme }}"
 
 ## plugins
-plugins=({{ ohmyzsh_plugins|join(' ') }})
+plugins=({{ ohmyzsh.plugins|join(' ') }})
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
 ## aliases
-alias fnd="print -l `pwd`\"/\"$@"
+alias fnd="readlink -e $@"
 alias prn="print -l $@"
