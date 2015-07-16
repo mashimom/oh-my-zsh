@@ -1,7 +1,7 @@
 ---
 # tasks file for oh-my-zsh
 
-  - apt: name={{ item }} state=latest
+  - apt: name="{{ item }}" state=latest
     when: ansible_pkg_mgr == 'apt'
     sudo: true
     with_items:
@@ -9,7 +9,7 @@
       - git
     notify: clean apt cache
 
-  - yum: name={{ item }} state=latest
+  - yum: name="{{ item }}" state=latest
     when: ansible_pkg_mgr == 'yum'
     sudo: true
     with_items:
@@ -19,11 +19,11 @@
 
   - git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
     sudo: true
-    sudo_user: {{ ohmyzsh.user }}
+    sudo_user: "{{ ohmyzsh.user }}"
 
   - template: src=.zshrc.j2 dest=~/.zshrc backup=yes
     sudo: true
-    sudo_user: {{ ohmyzsh.user }}
+    sudo_user: "{{ ohmyzsh.user }}"
 
-  - user: name={{ ohmyzsh.user }} shell=/bin/zsh
+  - user: name="{{ ohmyzsh.user }}" shell=/bin/zsh
     sudo: true
