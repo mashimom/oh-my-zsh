@@ -3,7 +3,7 @@
 
   - apt: name={{ item }} state=latest
     when: ansible_pkg_mgr == 'apt'
-    sudo: true
+    become: true
     with_items:
       - zsh
       - git
@@ -11,19 +11,23 @@
 
   - yum: name={{ item }} state=latest
     when: ansible_pkg_mgr == 'yum'
-    sudo: true
+    become: true
     with_items:
       - zsh
       - git
     notify: clean yum cache
 
-  - git: repo=git://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
-    sudo: true
-    sudo_user: {{ ohmyzsh.user }}
+  - git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
+    become: true
+    become_user: "{{ item }}"
+    with_items: ohmyzsh.user
+
 
   - template: src=.zshrc.j2 dest=~/.zshrc backup=yes
-    sudo: true
-    sudo_user: {{ ohmyzsh.user }}
+    become: true
+    become_user: "{{ item }}"
+    with_items: ohmyzsh.user
 
-  - user: name={{ ohmyzsh.user }} shell=/bin/zsh
-    sudo: true
+  - user: name={{ item }} shell=/bin/zsh
+    become: true
+    with_items: ohmyzsh.user
