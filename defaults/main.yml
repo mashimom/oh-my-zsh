@@ -12,3 +12,4 @@ ohmyzsh_plugins:
   - gradle
   - lein
 ohmyzsh_theme: pygmalion
+ohmyzsh_auto_update: "true"
