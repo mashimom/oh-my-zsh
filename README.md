@@ -9,8 +9,11 @@ The role's variables are:
 
 | Variable | Default value | Description |
 |----------|---------------|-------------|
-| `ohmyzsh_plugins` | `[git, vagrant, docker, command-not-found, gradle, lein]` | List of the plugins that should be added to oh-my-zsh |
-| `ohmyzsh_theme` | `pygmalion` | Theme to be ser on oh-my-zsh |
+| `ohmyzsh_plugins` | `[git, vagrant, docker, command-not-found, gradle, lein]` | List of the plugins that should be added to oh-my-zsh. |
+| `ohmyzsh_theme` | `pygmalion` | Theme to be set on oh-my-zsh. |
+| `ohmyzsh_disable_auto_update` | `"true"` | Disable oh-my-zsh auto update. |
+| `ohmyzsh_users_home_base_dir` | `/home` | Base directory for users homes.  If defined, all users who have homes in this directory will have oh-my-zsh enabled. Override with `!!null` if not required. |
+| `ohmyzsh_root_home` | `/root` | If defined, oh-my-zsh will be installed for root in this directory. Override with `!!null` if not required. |
 
 ## Example Playbook
 

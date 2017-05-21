@@ -1,9 +1,9 @@
 ---
 # defaults file for oh-my-zsh
 
-ohmyzsh_users:
-  - "{{ ansible_user_id }}"
-  - "{{ ansible_env.SUDO_USER | default(ansible_user_id) }}"
+# to undefine these, redefine them in your playbooks with a value of !!null
+ohmyzsh_users_home_base_dir: /home
+ohmyzsh_root_home: /root
 ohmyzsh_plugins:
   - git
   - vagrant
@@ -12,4 +12,4 @@ ohmyzsh_plugins:
   - gradle
   - lein
 ohmyzsh_theme: pygmalion
-ohmyzsh_auto_update: "true"
+ohmyzsh_disable_auto_update: "true"

@@ -1,32 +1,26 @@
 ---
 # tasks file for oh-my-zsh
 
-  - apt: name={{ item }} state=latest
-    when: ansible_pkg_mgr == 'apt'
-    become: true
+  - package: name={{ item }} state=latest
     with_items:
       - zsh
       - git
     notify: clean apt cache
 
-  - yum: name={{ item }} state=latest
-    when: ansible_pkg_mgr == 'yum'
-    become: true
-    with_items:
-      - zsh
-      - git
-    notify: clean yum cache
+  - git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/etc/skel/.oh-my-zsh accept_hostkey=true update=no
 
-  - git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh accept_hostkey=true update=no
-    become: true
-    become_user: "{{ item }}"
-    with_items: "{{ ohmyzsh_users | unique }}"
+  - template: src=.zshrc.j2 dest=/etc/skel/.zshrc backup=yes
 
-  - template: src=.zshrc.j2 dest=~/.zshrc backup=yes
-    become: true
-    become_user: "{{ item }}"
-    with_items: "{{ ohmyzsh_users | unique }}"
+  - shell: |
+      for a in $(ls {{ ohmyzsh_users_home_base_dir }}); do
+        cp -r /etc/skel/{.zshrc,.oh-my-zsh} {{ ohmyzsh_users_home_base_dir }}/${a}/
+        chown -R ${a}:${a} {{ ohmyzsh_users_home_base_dir }}/${a}/
+        chsh -s /bin/zsh ${a}
+      done
+    when: ohmyzsh_users_home_base_dir is defined
 
-  - user: name={{ item }} shell=/bin/zsh
-    become: true
-    with_items: "{{ ohmyzsh_users | unique }}"
+  - shell: |
+      cp -r /etc/skel/{.zshrc,.oh-my-zsh} {{ ohmyzsh_root_home }}
+      chown -R root:root {{ ohmyzsh_root_home }}
+      chsh -s /bin/zsh root
+    when: ohmyzsh_root_home is defined

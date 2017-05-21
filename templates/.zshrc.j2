@@ -9,7 +9,7 @@ ZSH_THEME="{{ ohmyzsh_theme }}"
 plugins=({{ ohmyzsh_plugins|join(' ') }})
 
 ## updates
-DISABLE_AUTO_UPDATE={{ ohmyzsh_auto_update }}
+DISABLE_AUTO_UPDATE={{ ohmyzsh_disable_auto_update }}
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
