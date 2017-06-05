@@ -13,14 +13,14 @@
 
   - shell: |
       for a in $(ls {{ ohmyzsh_users_home_base_dir }}); do
-        cp -r /etc/skel/{.zshrc,.oh-my-zsh} {{ ohmyzsh_users_home_base_dir }}/${a}/
+        cp -r /etc/skel/.zshrc /etc/skel/.oh-my-zsh {{ ohmyzsh_users_home_base_dir }}/${a}/
         chown -R ${a}:${a} {{ ohmyzsh_users_home_base_dir }}/${a}/
         chsh -s /bin/zsh ${a}
       done
     when: ohmyzsh_users_home_base_dir is defined
 
   - shell: |
-      cp -r /etc/skel/{.zshrc,.oh-my-zsh} {{ ohmyzsh_root_home }}
+      cp -r /etc/skel/.zshrc /etc/skel/.oh-my-zsh {{ ohmyzsh_root_home }}
       chown -R root:root {{ ohmyzsh_root_home }}
       chsh -s /bin/zsh root
     when: ohmyzsh_root_home is defined
