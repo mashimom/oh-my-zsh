@@ -4,6 +4,7 @@
 # to undefine these, redefine them in your playbooks with a value of !!null
 ohmyzsh_users_home_base_dir: /home
 ohmyzsh_root_home: /root
+ohmyzsh_repo: https://github.com/robbyrussell/oh-my-zsh.git
 ohmyzsh_plugins:
   - git
   - vagrant
