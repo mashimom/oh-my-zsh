@@ -9,7 +9,7 @@
 
   - git: repo={{ ohmyzsh_repo }} version={{ ohmyzsh_branch }} dest=/etc/skel/.oh-my-zsh accept_hostkey=true update=no
 
-  - template: src=.zshrc.j2 dest=/etc/skel/.zshrc backup=yes
+  - template: src={{ ohmyzsh_template }}  dest=/etc/skel/.zshrc backup=yes
 
   - shell: |
       for a in $(ls {{ ohmyzsh_users_home_base_dir }}); do

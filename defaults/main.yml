@@ -6,6 +6,7 @@ ohmyzsh_users_home_base_dir: /home
 ohmyzsh_root_home: /root
 ohmyzsh_repo: https://github.com/robbyrussell/oh-my-zsh.git
 ohmyzsh_branch: master
+ohmyzsh_template: templates/.zshrc.j2
 ohmyzsh_plugins:
   - git
   - vagrant
